@@ -1,0 +1,130 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------ */
+/*  Safe Screen Logistics — Design Tokens                              */
+/*  Aesthetic: refined medical-wellness. Deep spruce teal + warm       */
+/*  paper, an aqua/mint vitality accent, and a soft gold for warmth.   */
+/* ------------------------------------------------------------------ */
+
+:root {
+  /* Brand */
+  --spruce-950: #07201d;
+  --spruce-900: #0c2b27;
+  --spruce-800: #0e3a36;
+  --spruce-700: #16524b;
+  --spruce-600: #1d6b61;
+
+  --mint-500: #1aae9f;
+  --mint-400: #34c7b6;
+  --mint-300: #7bdccf;
+  --mint-100: #d7f2ec;
+
+  --gold-500: #c9a86a;
+  --gold-300: #e3cda0;
+
+  /* Surfaces */
+  --paper: #f6f3ec;   /* warm off-white page background */
+  --paper-2: #efeae0; /* slightly deeper section band */
+  --card: #ffffff;
+  --ink: #0c1f1d;     /* primary text */
+  --ink-soft: #3f534f;/* secondary text */
+  --line: #e3ddd1;    /* hairline borders */
+
+  /* Semantic */
+  --background: var(--paper);
+  --foreground: var(--ink);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --color-spruce-950: var(--spruce-950);
+  --color-spruce-900: var(--spruce-900);
+  --color-spruce-800: var(--spruce-800);
+  --color-spruce-700: var(--spruce-700);
+  --color-spruce-600: var(--spruce-600);
+
+  --color-mint-500: var(--mint-500);
+  --color-mint-400: var(--mint-400);
+  --color-mint-300: var(--mint-300);
+  --color-mint-100: var(--mint-100);
+
+  --color-gold-500: var(--gold-500);
+  --color-gold-300: var(--gold-300);
+
+  --color-paper: var(--paper);
+  --color-paper-2: var(--paper-2);
+  --color-card: var(--card);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-line: var(--line);
+
+  --font-display: var(--font-fraunces);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+
+  --radius-xl2: 1.75rem;
+}
+
+* {
+  border-color: var(--line);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), system-ui, sans-serif;
+  /* Subtle paper grain for depth — never a flat slab of color. */
+  background-image: radial-gradient(
+    circle at 1px 1px,
+    rgba(12, 31, 29, 0.025) 1px,
+    transparent 0
+  );
+  background-size: 22px 22px;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Display headings use the optical serif with tight tracking. */
+.font-display {
+  font-family: var(--font-display), Georgia, serif;
+  font-optical-sizing: auto;
+  letter-spacing: -0.015em;
+}
+
+/* Small clinical labels — monospace, uppercase, spaced. */
+.eyebrow {
+  font-family: var(--font-mono), monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 0.72rem;
+  font-weight: 500;
+}
+
+/* Selection + focus polish */
+::selection {
+  background: var(--mint-300);
+  color: var(--spruce-950);
+}
+
+:focus-visible {
+  outline: 2px solid var(--mint-500);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}
