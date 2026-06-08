@@ -21,10 +21,52 @@ export function DropletCursor() {
     const pos = { x: -100, y: -100 };
     const target = { x: -100, y: -100 };
     let raf = 0;
+    let running = false;
+    let lastX = NaN;
+    let lastY = NaN;
+
+    const stop = () => {
+      if (raf) cancelAnimationFrame(raf);
+      raf = 0;
+      running = false;
+    };
+
+    // Lerp only while the dot is catching up to the pointer. Once it converges
+    // we stop the loop entirely (no perpetual idle rAF / style writes); the
+    // next pointermove restarts it.
+    const tick = () => {
+      pos.x += (target.x - pos.x) * 0.18;
+      pos.y += (target.y - pos.y) * 0.18;
+      if (Math.abs(target.x - pos.x) < 0.5 && Math.abs(target.y - pos.y) < 0.5) {
+        pos.x = target.x;
+        pos.y = target.y;
+      }
+      const rx = Math.round(pos.x);
+      const ry = Math.round(pos.y);
+      if (dotRef.current && (rx !== lastX || ry !== lastY)) {
+        dotRef.current.style.transform = `translate(${rx}px, ${ry}px) translate(-50%, -50%)`;
+        lastX = rx;
+        lastY = ry;
+      }
+      if (pos.x === target.x && pos.y === target.y) {
+        running = false;
+        raf = 0;
+        return;
+      }
+      raf = requestAnimationFrame(tick);
+    };
+
+    const start = () => {
+      if (!running && !document.hidden) {
+        running = true;
+        raf = requestAnimationFrame(tick);
+      }
+    };
 
     const onMove = (e: PointerEvent) => {
       target.x = e.clientX;
       target.y = e.clientY;
+      start();
     };
     const onClick = (e: PointerEvent) => {
       const root = rootRef.current;
@@ -37,23 +79,18 @@ export function DropletCursor() {
       root.appendChild(r);
       window.setTimeout(() => r.remove(), 650);
     };
-
-    const tick = () => {
-      pos.x += (target.x - pos.x) * 0.18;
-      pos.y += (target.y - pos.y) * 0.18;
-      if (dotRef.current) {
-        dotRef.current.style.transform = `translate(${pos.x}px, ${pos.y}px) translate(-50%, -50%)`;
-      }
-      raf = requestAnimationFrame(tick);
+    const onVisibility = () => {
+      if (document.hidden) stop();
     };
-    raf = requestAnimationFrame(tick);
 
     window.addEventListener("pointermove", onMove);
     window.addEventListener("pointerdown", onClick);
+    document.addEventListener("visibilitychange", onVisibility);
     return () => {
-      cancelAnimationFrame(raf);
+      stop();
       window.removeEventListener("pointermove", onMove);
       window.removeEventListener("pointerdown", onClick);
+      document.removeEventListener("visibilitychange", onVisibility);
     };
   }, [reduce]);
 

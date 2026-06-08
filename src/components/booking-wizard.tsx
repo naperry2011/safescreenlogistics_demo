@@ -72,7 +72,7 @@ export function BookingWizard() {
 
   const service = services.find((s) => s.slug === serviceSlug)!;
   const drip = getDrip(dripSlug);
-  const showDripPicker = serviceSlug === "iv-therapy";
+  const showDripPicker = !!service.hasDrips;
 
   const canAdvance = useMemo(() => {
     switch (step) {
@@ -102,7 +102,7 @@ export function BookingWizard() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           serviceSlug,
-          drip: showDripPicker && drip ? drip.name : undefined,
+          drip: showDripPicker && drip ? drip.slug : undefined,
           mode,
           address: mode === "mobile" ? address : undefined,
           location: mode === "clinic" ? location : undefined,
@@ -194,7 +194,7 @@ export function BookingWizard() {
                     key={s.slug}
                     onClick={() => {
                       setServiceSlug(s.slug);
-                      if (s.slug !== "iv-therapy") setDripSlug("");
+                      if (!s.hasDrips) setDripSlug("");
                     }}
                     className={cn(
                       "flex flex-col items-start gap-3 rounded-2xl border p-5 text-left transition-all",

@@ -258,7 +258,7 @@ export default function HomePage() {
                 description="Energy, recovery, beauty, calm, immunity — pick the drip that fits the moment, or let our clinicians recommend one."
               />
               <div className="grid gap-4 sm:grid-cols-2">
-                {[flagshipDrip, standardDrips[0], standardDrips[1], standardDrips[2]].map(
+                {[flagshipDrip, ...standardDrips.slice(0, 3)].map(
                   (d, i) => (
                     <Reveal key={d.slug} delay={0.1 + i * 0.06}>
                       <DripCard drip={d} />

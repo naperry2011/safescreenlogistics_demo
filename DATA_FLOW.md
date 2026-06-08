@@ -7,7 +7,7 @@ Source: src/data/*.ts (typed modules)
 Transport: ES import
 Processor: Server Components (pages) + presentational components
 Storage: none (compiled into static/SSG HTML)
-Downstream Consumers: rendered pages (/, /services, /packages, /learn, /about, /contact)
+Downstream Consumers: rendered pages (/, /services, /menu, /learn, /about, /contact)
 
 ## Service / Article Detail (SSG)
 Source: data/services.ts, data/articles.ts

@@ -1,16 +1,19 @@
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import type { Drip } from "@/data/drips";
+import { dripService } from "@/data/services";
+import { cardShell, cardIconChip } from "@/components/ui/card";
+import { cn } from "@/lib/utils";
 
 export function DripCard({ drip }: { drip: Drip }) {
   const Icon = drip.icon;
   return (
     <Link
-      href={`/book?service=iv-therapy&drip=${drip.slug}`}
-      className="group relative flex h-full flex-col gap-4 rounded-[var(--radius-xl2)] bg-card/80 backdrop-blur-sm border border-line p-6 transition-all duration-300 hover:border-mint-400 hover:shadow-[0_24px_50px_-30px_rgba(14,58,54,0.45)] hover:-translate-y-1"
+      href={`/book?service=${dripService.slug}&drip=${drip.slug}`}
+      className={cn(cardShell, "h-full gap-4 bg-card/80 backdrop-blur-sm p-6")}
     >
       <div className="flex items-start justify-between">
-        <span className="inline-flex size-12 items-center justify-center rounded-2xl bg-mint-100 text-spruce-800 group-hover:bg-mint-500 group-hover:text-spruce-950 transition-colors">
+        <span className={cn(cardIconChip, "size-12")}>
           <Icon className="size-6" />
         </span>
         <span className="font-display text-xl text-spruce-900">{drip.price}</span>

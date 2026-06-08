@@ -173,15 +173,12 @@ body {
 }
 .droplet-ripple { animation: droplet-ripple 0.6s ease-out forwards; }
 
-/* Button liquid ripple sheen */
-@keyframes sheen {
-  0% { transform: translateX(-120%); }
-  100% { transform: translateX(120%); }
-}
-
-/* Hide the custom cursor layer where it shouldn't run */
+/* On touch / coarse-pointer devices (phones, tablets) skip the perpetual
+   custom cursor and the expensive full-viewport gooey SVG blur — the blobs
+   still render as soft circles, so the look survives without the paint cost. */
 @media (hover: none), (pointer: coarse) {
   .droplet-cursor-root { display: none !important; }
+  .goo { filter: none !important; }
 }
 
 @media (prefers-reduced-motion: reduce) {

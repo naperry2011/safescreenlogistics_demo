@@ -23,7 +23,6 @@ export type Drip = {
   slug: string;
   name: string;
   price: string;
-  priceValue: number;
   icon: LucideIcon;
   /** Short menu blurb. */
   blurb: string;
@@ -36,9 +35,7 @@ export const drips: Drip[] = [
   {
     slug: "full-body-restart",
     name: "Full Body Restart",
-    price: "$500",
-    priceValue: 500,
-    icon: Sparkles,
+    price: "$500",    icon: Sparkles,
     flagship: true,
     blurb:
       "Our most complete infusion — a high-dose blend of hydration, vitamins, antioxidants, and amino acids designed to reset you from head to toe. The flagship reset for when you want everything, all at once.",
@@ -47,9 +44,7 @@ export const drips: Drip[] = [
   {
     slug: "rehydration",
     name: "Rehydration Therapy",
-    price: "$250",
-    priceValue: 250,
-    icon: Droplets,
+    price: "$250",    icon: Droplets,
     blurb:
       "Fast, balanced fluids and electrolytes to bring you back to baseline after heat, exertion, or a long day.",
     bestFor: ["Dehydration", "Post-workout", "Hot days"],
@@ -57,9 +52,7 @@ export const drips: Drip[] = [
   {
     slug: "energy-boost",
     name: "Energy Boost Therapy",
-    price: "$250",
-    priceValue: 250,
-    icon: Zap,
+    price: "$250",    icon: Zap,
     blurb:
       "A B-vitamin and amino-acid forward blend to lift fatigue and restore steady, clean energy.",
     bestFor: ["Low energy", "Busy weeks", "Afternoon slumps"],
@@ -67,9 +60,7 @@ export const drips: Drip[] = [
   {
     slug: "rejuvenate-hangover",
     name: "Rejuvenate (Hangover) Therapy",
-    price: "$250",
-    priceValue: 250,
-    icon: GlassWater,
+    price: "$250",    icon: GlassWater,
     blurb:
       "Rapid rehydration plus anti-nausea and replenishing nutrients to help you bounce back quickly.",
     bestFor: ["Morning after", "Travel recovery", "Quick bounce-back"],
@@ -77,9 +68,7 @@ export const drips: Drip[] = [
   {
     slug: "athletic-performance",
     name: "Athletic Performance Therapy",
-    price: "$250",
-    priceValue: 250,
-    icon: Trophy,
+    price: "$250",    icon: Trophy,
     blurb:
       "Amino acids and electrolytes to support endurance, muscle recovery, and faster turnaround between sessions.",
     bestFor: ["Athletes", "Training blocks", "Race recovery"],
@@ -87,9 +76,7 @@ export const drips: Drip[] = [
   {
     slug: "beauty",
     name: "Beauty Therapy",
-    price: "$250",
-    priceValue: 250,
-    icon: Gem,
+    price: "$250",    icon: Gem,
     blurb:
       "A glow-focused blend with antioxidants and skin-supporting nutrients to nourish hair, skin, and nails.",
     bestFor: ["Skin glow", "Hair & nails", "Special occasions"],
@@ -97,9 +84,7 @@ export const drips: Drip[] = [
   {
     slug: "anxiety",
     name: "Anxiety Therapy",
-    price: "$250",
-    priceValue: 250,
-    icon: Waves,
+    price: "$250",    icon: Waves,
     blurb:
       "Magnesium and calming nutrients formulated to ease tension and support a steadier, more grounded state.",
     bestFor: ["Stress relief", "Tension", "Calm reset"],
@@ -107,9 +92,7 @@ export const drips: Drip[] = [
   {
     slug: "depression",
     name: "Depression Support Therapy",
-    price: "$250",
-    priceValue: 250,
-    icon: Sun,
+    price: "$250",    icon: Sun,
     blurb:
       "A mood-supportive blend of vitamins and nutrients intended to complement your broader wellness routine.",
     bestFor: ["Mood support", "Low motivation", "Whole-person care"],
@@ -117,9 +100,7 @@ export const drips: Drip[] = [
   {
     slug: "gut-health",
     name: "Gut Health Therapy",
-    price: "$250",
-    priceValue: 250,
-    icon: Leaf,
+    price: "$250",    icon: Leaf,
     blurb:
       "Nutrients chosen to support digestion and gut comfort while keeping you well hydrated.",
     bestFor: ["Digestive comfort", "Bloating", "Reset routine"],
@@ -127,9 +108,7 @@ export const drips: Drip[] = [
   {
     slug: "hair-growth",
     name: "Hair Growth Therapy",
-    price: "$250",
-    priceValue: 250,
-    icon: Sprout,
+    price: "$250",    icon: Sprout,
     blurb:
       "Biotin and supporting nutrients to nourish follicles and complement a healthy hair routine.",
     bestFor: ["Hair health", "Thinning", "Stronger strands"],
@@ -137,16 +116,14 @@ export const drips: Drip[] = [
   {
     slug: "aging",
     name: "Aging (Anti-Aging) Therapy",
-    price: "$250",
-    priceValue: 250,
-    icon: Star,
+    price: "$250",    icon: Star,
     blurb:
       "Antioxidant-rich support, including glutathione-style nutrients, to help you look and feel refreshed.",
     bestFor: ["Vitality", "Antioxidant support", "Refreshed look"],
   },
 ];
 
-export const flagshipDrip = drips.find((d) => d.flagship)!;
+export const flagshipDrip = drips.find((d) => d.flagship) ?? drips[0];
 export const standardDrips = drips.filter((d) => !d.flagship);
 
 export function getDrip(slug: string) {

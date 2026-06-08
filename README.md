@@ -6,10 +6,12 @@ clinical-and-trustworthy site for a mobile IV therapy & wellness business. Built
 
 ## Highlights
 
-- **Multi-step booking wizard** (`/book`) — choose service → mobile/clinic → date & time → details →
-  confirm. Submissions hit a mocked API designed to plug into real scheduling/payments later.
+- **Multi-step booking wizard** (`/book`) — choose service → drip (for IV therapy) → mobile/clinic →
+  date & time → details → confirm. Submissions hit a mocked API designed to plug into real
+  scheduling/payments later.
+- **IV drip menu** (`/menu`) — flagship Full Body Restart + the $250 drip grid, each booking-linked.
 - **Education hub** (`/learn`) — article index + detail pages and an accessible FAQ.
-- **Service & package pages**, **About**, **Contact** — all with polished, scroll-revealed sections.
+- **Service & drip pages**, **About**, **Contact** — all with polished, scroll-revealed sections.
 - Custom design system: deep spruce teal + warm paper, an aqua/mint vitality accent, Fraunces display
   serif, Geist body/mono. Accessible (single h1 per page, focus states, reduced-motion support).
 
@@ -21,7 +23,7 @@ All copy/pricing/contact details are centralized and easy to edit:
 | --- | --- |
 | Brand, contact, nav, hours, social | `src/data/site.ts` |
 | Services (copy, benefits, steps) | `src/data/services.ts` |
-| Packages & pricing | `src/data/packages.ts` |
+| IV drip menu & pricing | `src/data/drips.ts` |
 | Testimonials | `src/data/testimonials.ts` |
 | FAQs | `src/data/faqs.ts` |
 | Education articles | `src/data/articles.ts` |

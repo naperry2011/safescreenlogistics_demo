@@ -17,6 +17,8 @@ export type Service = {
   goodFor: string[];
   startingPrice: string;
   duration: string;
+  /** True when this service offers the IV drip menu (drives the drip picker). */
+  hasDrips?: boolean;
 };
 
 export const services: Service[] = [
@@ -63,6 +65,7 @@ export const services: Service[] = [
     ],
     startingPrice: "from $250",
     duration: "30–60 min",
+    hasDrips: true,
   },
   {
     slug: "blood-draws",
@@ -109,3 +112,6 @@ export const services: Service[] = [
 export function getService(slug: string) {
   return services.find((s) => s.slug === slug);
 }
+
+/** The single service that offers the drip menu (currently IV therapy). */
+export const dripService = services.find((s) => s.hasDrips) ?? services[0];

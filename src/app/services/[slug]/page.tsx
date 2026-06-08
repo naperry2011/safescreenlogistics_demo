@@ -164,8 +164,8 @@ export default async function ServiceDetailPage({
         </Container>
       </section>
 
-      {/* Drip menu — IV therapy only */}
-      {slug === "iv-therapy" && (
+      {/* Drip menu — services that offer the drip menu */}
+      {service.hasDrips && (
         <section className="pb-4">
           <Container className="flex flex-col gap-8">
             <Reveal>

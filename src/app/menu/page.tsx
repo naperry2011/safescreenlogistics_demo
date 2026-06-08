@@ -11,6 +11,7 @@ import { GooBlobs } from "@/components/fluid/goo-blobs";
 import { Bubbles } from "@/components/fluid/bubbles";
 import { WaveDivider } from "@/components/fluid/wave-divider";
 import { flagshipDrip, standardDrips } from "@/data/drips";
+import { dripService } from "@/data/services";
 import { faqs } from "@/data/faqs";
 
 export const metadata: Metadata = {
@@ -64,7 +65,7 @@ export default function MenuPage() {
                   </ul>
                   <div className="flex flex-wrap items-center gap-4 pt-2">
                     <ButtonLink
-                      href={`/book?service=iv-therapy&drip=${flagshipDrip.slug}`}
+                      href={`/book?service=${dripService.slug}&drip=${flagshipDrip.slug}`}
                       variant="secondary"
                       size="lg"
                     >
