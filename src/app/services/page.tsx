@@ -9,7 +9,7 @@ import { services } from "@/data/services";
 export const metadata: Metadata = {
   title: "Services",
   description:
-    "Mobile IV hydration therapy, professional blood draws, and tailored wellness packages from Safe Screen Logistics.",
+    "Mobile IV hydration therapy and professional blood draws from Safe Screen Logistics — featuring a tailored IV drip menu.",
 };
 
 export default function ServicesPage() {

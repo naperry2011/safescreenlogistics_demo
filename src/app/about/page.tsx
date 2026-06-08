@@ -8,7 +8,7 @@ import { CtaBand } from "@/components/cta-band";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "Safe Screen Logistics brings clinical-grade wellness — IV therapy, blood draws, and packages — to you, with safety and care at the center.",
+    "Safe Screen Logistics brings clinical-grade wellness — IV therapy, a tailored drip menu, and blood draws — to you, with safety and care at the center.",
 };
 
 const values = [
@@ -69,10 +69,10 @@ export default function AboutPage() {
           <Reveal delay={0.1}>
             <div className="mt-8 flex flex-col gap-5 text-lg text-ink leading-relaxed">
               <p>
-                We bring IV hydration therapy, blood draws, and tailored
-                wellness packages directly to the people who need them — busy
-                professionals, athletes, and anyone who values their time and
-                their health.
+                We bring IV hydration therapy — through a tailored drip menu —
+                and mobile blood draws directly to the people who need them —
+                busy professionals, athletes, and anyone who values their time
+                and their health.
               </p>
               <p>
                 Every service is delivered by licensed clinicians who lead with

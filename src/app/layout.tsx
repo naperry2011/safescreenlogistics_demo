@@ -3,6 +3,8 @@ import { Geist, Geist_Mono, Fraunces } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
+import { FluidDefs } from "@/components/fluid/fluid-defs";
+import { DropletCursor } from "@/components/fluid/droplet-cursor";
 import { site } from "@/data/site";
 
 const geistSans = Geist({
@@ -31,8 +33,8 @@ export const metadata: Metadata = {
   keywords: [
     "IV therapy",
     "mobile IV hydration",
+    "IV drip menu",
     "blood draw services",
-    "wellness packages",
     "Safe Screen Logistics",
   ],
   openGraph: {
@@ -53,6 +55,8 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} ${fraunces.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
+        <FluidDefs />
+        <DropletCursor />
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />

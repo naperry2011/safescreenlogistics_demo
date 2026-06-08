@@ -117,6 +117,73 @@ body {
   border-radius: 4px;
 }
 
+/* ------------------------------------------------------------------ */
+/*  "Fluid & living" — signature water/drip motion system              */
+/*  All animations below are auto-disabled by the reduced-motion       */
+/*  block at the bottom of this file.                                  */
+/* ------------------------------------------------------------------ */
+
+/* Gooey metaball container: blobs merge into organic liquid shapes. */
+.goo {
+  filter: url(#goo-filter);
+}
+
+@keyframes blob-a {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(8%, 10%) scale(1.12); }
+  66% { transform: translate(-6%, 4%) scale(0.92); }
+}
+@keyframes blob-b {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  40% { transform: translate(-10%, 8%) scale(1.15); }
+  70% { transform: translate(6%, -8%) scale(0.9); }
+}
+@keyframes blob-c {
+  0%, 100% { transform: translate(0, 0) scale(1.05); }
+  50% { transform: translate(10%, -10%) scale(0.85); }
+}
+
+.blob-a { animation: blob-a 18s ease-in-out infinite; }
+.blob-b { animation: blob-b 22s ease-in-out infinite; }
+.blob-c { animation: blob-c 26s ease-in-out infinite; }
+
+/* Rising bubbles */
+@keyframes bubble-rise {
+  0% { transform: translateY(0) scale(0.6); opacity: 0; }
+  12% { opacity: 0.7; }
+  85% { opacity: 0.5; }
+  100% { transform: translateY(-340px) scale(1); opacity: 0; }
+}
+.bubble {
+  animation: bubble-rise var(--dur, 9s) ease-in infinite;
+  animation-delay: var(--delay, 0s);
+}
+
+/* Wave divider gentle horizontal drift */
+@keyframes wave-shift {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.wave-anim { animation: wave-shift 14s linear infinite; }
+
+/* Droplet cursor ripple on click */
+@keyframes droplet-ripple {
+  0% { transform: translate(-50%, -50%) scale(0.2); opacity: 0.6; }
+  100% { transform: translate(-50%, -50%) scale(2.6); opacity: 0; }
+}
+.droplet-ripple { animation: droplet-ripple 0.6s ease-out forwards; }
+
+/* Button liquid ripple sheen */
+@keyframes sheen {
+  0% { transform: translateX(-120%); }
+  100% { transform: translateX(120%); }
+}
+
+/* Hide the custom cursor layer where it shouldn't run */
+@media (hover: none), (pointer: coarse) {
+  .droplet-cursor-root { display: none !important; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -125,6 +192,8 @@ body {
   *::before,
   *::after {
     animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
   }
+  .droplet-cursor-root { display: none !important; }
 }

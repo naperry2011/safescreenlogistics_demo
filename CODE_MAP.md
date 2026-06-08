@@ -15,6 +15,19 @@ Supporting Files:
 - src/components/reveal.tsx (scroll-reveal motion wrapper)
 External Integrations: none
 
+## Fluid Identity ("Fluid & living" motion system)
+Category: UI
+Primary Files:
+- src/components/fluid/fluid-defs.tsx (global SVG gooey filter; mounted once in layout)
+- src/components/fluid/goo-blobs.tsx (drifting metaball background)
+- src/components/fluid/wave-divider.tsx (animated SVG wave section dividers)
+- src/components/fluid/liquid-fill.tsx (scroll-driven liquid vessel; client)
+- src/components/fluid/bubbles.tsx (rising bubbles)
+- src/components/fluid/droplet-cursor.tsx (lagging droplet cursor + click ripple; client, mounted in layout)
+Supporting Files:
+- src/app/globals.css (fluid keyframes, .goo/.bubble/.wave-anim helpers, reduced-motion guard)
+External Integrations: none. All effects degrade on touch + prefers-reduced-motion.
+
 ## Layout & Chrome
 Category: UI
 Primary Files:
@@ -43,13 +56,15 @@ Supporting Files:
 - src/data/services.ts, src/data/faqs.ts
 - src/components/faq.tsx, src/components/cta-band.tsx
 
-## Packages / Pricing
+## Drip Menu
 Category: UI
 Primary Files:
-- src/app/packages/page.tsx
+- src/app/menu/page.tsx (flagship Full Body Restart hero + $250 drip grid)
+- src/components/drip-card.tsx (links to /book?service=iv-therapy&drip=<slug>)
 Supporting Files:
-- src/data/packages.ts, src/data/faqs.ts
-- src/components/faq.tsx, src/components/cta-band.tsx
+- src/data/drips.ts (11 drips: 10×$250 + flagship $500), src/data/faqs.ts
+- src/components/faq.tsx, src/components/cta-band.tsx, fluid/* (goo, bubbles, wave)
+Note: also surfaced as a section on src/app/services/[slug]/page.tsx for the iv-therapy slug.
 
 ## Education Hub (Learn)
 Category: UI
@@ -96,5 +111,7 @@ Primary Files:
 Category: Other (config/content)
 Primary Files:
 - src/data/site.ts (brand, contact, nav, hours, social)
-- src/data/services.ts, packages.ts, testimonials.ts, faqs.ts, articles.ts
+- src/data/services.ts (IV Therapy + Blood Draws), drips.ts (drip menu),
+  testimonials.ts, faqs.ts, articles.ts
 Note: single source of truth for all copy/pricing/contact; swappable.
+Removed: packages.ts (membership tiers) — replaced by the real drips.ts catalog.

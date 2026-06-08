@@ -17,18 +17,20 @@ Depends On: data/{services,testimonials,articles}
 
 ## Services Pages
 Path: src/app/services/page.tsx ; src/app/services/[slug]/page.tsx
-Responsibility: Service overview grid; per-service detail (SSG via generateStaticParams).
-Invokes: ServiceCard, FaqList, CtaBand
-Depends On: data/services, data/faqs
+Responsibility: Service overview (IV Therapy + Blood Draws); per-service detail (SSG). The
+iv-therapy detail also renders a drip-menu section.
+Invokes: ServiceCard, DripCard, FaqList, CtaBand
+Depends On: data/services, data/drips, data/faqs
 
-## Packages Page
-Path: src/app/packages/page.tsx
-Responsibility: Pricing tiers + plan FAQ.
-Depends On: data/packages, data/faqs
+## Drip Menu Page
+Path: src/app/menu/page.tsx
+Responsibility: Flagship Full Body Restart hero + grid of $250 drips; each links into booking.
+Invokes: DripCard, GooBlobs, Bubbles, WaveDivider, FaqList, CtaBand
+Depends On: data/drips, data/faqs
 
 ## Book Page
 Path: src/app/book/page.tsx
-Responsibility: Hosts BookingWizard inside Suspense (reads ?service / ?package query).
+Responsibility: Hosts BookingWizard inside Suspense (reads ?service / ?drip query).
 Invokes: BookingWizard
 Depends On: posts to /api/book
 

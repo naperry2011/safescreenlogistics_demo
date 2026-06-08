@@ -3,6 +3,7 @@ import { z } from "zod";
 
 const BookingSchema = z.object({
   serviceSlug: z.string().min(1),
+  drip: z.string().optional(),
   mode: z.enum(["mobile", "clinic"]),
   address: z.string().optional(),
   location: z.string().optional(),

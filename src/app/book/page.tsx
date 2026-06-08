@@ -7,7 +7,7 @@ import { BookingWizard } from "@/components/booking-wizard";
 export const metadata: Metadata = {
   title: "Book a Visit",
   description:
-    "Book mobile IV therapy, a blood draw, or a wellness package with Safe Screen Logistics in just a couple of minutes.",
+    "Book mobile IV therapy, a specific drip, or a blood draw with Safe Screen Logistics in just a couple of minutes.",
 };
 
 export default function BookPage() {

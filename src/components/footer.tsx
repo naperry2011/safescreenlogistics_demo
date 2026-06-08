@@ -14,8 +14,8 @@ export function Footer() {
           <div className="md:col-span-4 flex flex-col gap-5">
             <Logo variant="light" />
             <p className="text-sm leading-relaxed text-paper/60 max-w-xs">
-              {site.tagline} Professional mobile IV therapy, blood draws, and
-              wellness packages — on your schedule.
+              {site.tagline} Professional mobile IV therapy, a tailored drip
+              menu, and blood draws — on your schedule.
             </p>
             <div className="flex flex-col gap-2 text-sm">
               <a href={site.phoneHref} className="inline-flex items-center gap-2 hover:text-mint-300">

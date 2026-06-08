@@ -12,6 +12,7 @@ import {
   PartyPopper,
 } from "lucide-react";
 import { services } from "@/data/services";
+import { drips, getDrip } from "@/data/drips";
 import { ButtonLink } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
@@ -53,9 +54,11 @@ export function BookingWizard() {
   const initialService =
     services.find((s) => s.slug === searchParams.get("service"))?.slug ??
     services[0].slug;
+  const initialDrip = getDrip(searchParams.get("drip") ?? "")?.slug ?? "";
 
   const [step, setStep] = useState(0);
   const [serviceSlug, setServiceSlug] = useState(initialService);
+  const [dripSlug, setDripSlug] = useState(initialDrip);
   const [mode, setMode] = useState<Mode>("mobile");
   const [address, setAddress] = useState("");
   const [location, setLocation] = useState(CLINICS[0]);
@@ -68,6 +71,8 @@ export function BookingWizard() {
   const [error, setError] = useState("");
 
   const service = services.find((s) => s.slug === serviceSlug)!;
+  const drip = getDrip(dripSlug);
+  const showDripPicker = serviceSlug === "iv-therapy";
 
   const canAdvance = useMemo(() => {
     switch (step) {
@@ -97,6 +102,7 @@ export function BookingWizard() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           serviceSlug,
+          drip: showDripPicker && drip ? drip.name : undefined,
           mode,
           address: mode === "mobile" ? address : undefined,
           location: mode === "clinic" ? location : undefined,
@@ -130,6 +136,7 @@ export function BookingWizard() {
         )}
         <div className="mt-2 w-full max-w-sm rounded-2xl bg-paper-2/60 border border-line p-5 text-left text-sm flex flex-col gap-2">
           <Row label="Service" value={service.name} />
+          {showDripPicker && drip && <Row label="Drip" value={drip.name} />}
           <Row label="Where" value={mode === "mobile" ? address : location} />
           <Row label="When" value={`${date} · ${time}`} />
           <Row label="Name" value={form.name} />
@@ -175,17 +182,20 @@ export function BookingWizard() {
       </div>
 
       <div className="p-6 sm:p-10">
-        {/* STEP 0 — service */}
+        {/* STEP 0 — service (+ drip picker for IV therapy) */}
         {step === 0 && (
           <Fieldset legend="Which service would you like?">
-            <div className="grid gap-3 sm:grid-cols-3">
+            <div className="grid gap-3 sm:grid-cols-2">
               {services.map((s) => {
                 const Icon = s.icon;
                 const active = s.slug === serviceSlug;
                 return (
                   <button
                     key={s.slug}
-                    onClick={() => setServiceSlug(s.slug)}
+                    onClick={() => {
+                      setServiceSlug(s.slug);
+                      if (s.slug !== "iv-therapy") setDripSlug("");
+                    }}
                     className={cn(
                       "flex flex-col items-start gap-3 rounded-2xl border p-5 text-left transition-all",
                       active
@@ -200,6 +210,37 @@ export function BookingWizard() {
                 );
               })}
             </div>
+
+            {showDripPicker && (
+              <div className="mt-6">
+                <p className="eyebrow text-ink-soft mb-3">
+                  Choose your drip <span className="normal-case tracking-normal text-ink-soft/70">(optional — we can recommend one)</span>
+                </p>
+                <div className="grid gap-2 sm:grid-cols-2">
+                  {drips.map((d) => {
+                    const active = d.slug === dripSlug;
+                    return (
+                      <button
+                        key={d.slug}
+                        onClick={() => setDripSlug(active ? "" : d.slug)}
+                        className={cn(
+                          "flex items-center justify-between gap-3 rounded-xl border px-4 py-3 text-left transition-all",
+                          active
+                            ? "border-mint-500 bg-mint-100/50 ring-1 ring-mint-500"
+                            : "border-line hover:border-mint-400",
+                        )}
+                      >
+                        <span className="flex items-center gap-2.5">
+                          <d.icon className="size-5 text-spruce-800 shrink-0" />
+                          <span className="text-sm text-spruce-950">{d.name}</span>
+                        </span>
+                        <span className="text-xs text-ink-soft shrink-0">{d.price}</span>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
           </Fieldset>
         )}
 
@@ -340,6 +381,7 @@ export function BookingWizard() {
           <Fieldset legend="Review &amp; confirm">
             <div className="rounded-2xl bg-paper-2/50 border border-line p-6 flex flex-col gap-3">
               <Row label="Service" value={service.name} />
+              {showDripPicker && drip && <Row label="Drip" value={`${drip.name} · ${drip.price}`} />}
               <Row label="Where" value={mode === "mobile" ? `Mobile · ${address}` : location} />
               <Row label="When" value={`${date} · ${time}`} />
               <Row label="Name" value={form.name} />

@@ -1,5 +1,5 @@
 import type { LucideIcon } from "lucide-react";
-import { Droplets, Syringe, HeartPulse } from "lucide-react";
+import { Droplets, Syringe } from "lucide-react";
 
 export type Service = {
   slug: string;
@@ -61,7 +61,7 @@ export const services: Service[] = [
       "Post-travel and post-event reset",
       "General hydration and wellness",
     ],
-    startingPrice: "from $129",
+    startingPrice: "from $250",
     duration: "30–60 min",
   },
   {
@@ -101,44 +101,8 @@ export const services: Service[] = [
       "Homebound or busy individuals",
       "Pre-employment and screening needs",
     ],
-    startingPrice: "from $79",
+    startingPrice: "Contact for pricing",
     duration: "15–20 min",
-  },
-  {
-    slug: "wellness-packages",
-    name: "Wellness Packages",
-    icon: HeartPulse,
-    summary:
-      "Curated bundles and memberships that make consistent care simple and affordable.",
-    intro:
-      "Wellness is a rhythm, not a one-off. Our packages combine the services you use most into a simple, better-value plan — so staying on top of your health feels effortless.",
-    benefits: [
-      "Better value than booking à la carte",
-      "Priority scheduling for members",
-      "Mix and match services to your goals",
-      "Flexible, no long-term lock-in",
-    ],
-    expect: [
-      {
-        title: "Choose your goals",
-        detail: "Tell us what you want to focus on — energy, recovery, routine labs.",
-      },
-      {
-        title: "We build the plan",
-        detail: "We recommend a package and cadence that fits your life and budget.",
-      },
-      {
-        title: "Enjoy the perks",
-        detail: "Priority booking, member pricing, and a single point of contact.",
-      },
-    ],
-    goodFor: [
-      "Regular IV therapy users",
-      "Households and teams",
-      "Anyone building a wellness routine",
-    ],
-    startingPrice: "from $299/mo",
-    duration: "Ongoing",
   },
 ];
 

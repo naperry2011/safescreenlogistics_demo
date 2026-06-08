@@ -8,7 +8,7 @@ export const site = {
   shortName: "Safe Screen",
   tagline: "Clinical-grade wellness, delivered with care.",
   description:
-    "Safe Screen Logistics provides professional mobile IV hydration therapy, blood draw services, and tailored wellness packages — delivered safely, comfortably, and on your schedule.",
+    "Safe Screen Logistics provides professional mobile IV hydration therapy and blood draw services — featuring a tailored IV drip menu delivered safely, comfortably, and on your schedule.",
   phone: "765-372-6440",
   phoneHref: "tel:+17653726440",
   email: "support@safescreenlogistics.com",
@@ -26,7 +26,7 @@ export const site = {
   ],
   nav: [
     { label: "Services", href: "/services" },
-    { label: "Packages", href: "/packages" },
+    { label: "Drip Menu", href: "/menu" },
     { label: "Learn", href: "/learn" },
     { label: "About", href: "/about" },
     { label: "Contact", href: "/contact" },

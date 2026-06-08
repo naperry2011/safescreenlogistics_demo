@@ -8,8 +8,10 @@ import { Eyebrow } from "@/components/ui/section-heading";
 import { Reveal } from "@/components/reveal";
 import { FaqList } from "@/components/faq";
 import { CtaBand } from "@/components/cta-band";
+import { DripCard } from "@/components/drip-card";
 import { services, getService } from "@/data/services";
 import { faqs } from "@/data/faqs";
+import { standardDrips, flagshipDrip } from "@/data/drips";
 
 export function generateStaticParams() {
   return services.map((s) => ({ slug: s.slug }));
@@ -162,8 +164,36 @@ export default async function ServiceDetailPage({
         </Container>
       </section>
 
+      {/* Drip menu — IV therapy only */}
+      {slug === "iv-therapy" && (
+        <section className="pb-4">
+          <Container className="flex flex-col gap-8">
+            <Reveal>
+              <div className="flex flex-wrap items-end justify-between gap-4">
+                <h2 className="font-display text-3xl text-spruce-950">
+                  Explore the drip menu
+                </h2>
+                <Link
+                  href="/menu"
+                  className="inline-flex items-center gap-1.5 text-sm font-medium text-spruce-700 hover:text-spruce-900"
+                >
+                  See the full menu <ArrowRight className="size-4" />
+                </Link>
+              </div>
+            </Reveal>
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {[flagshipDrip, ...standardDrips].slice(0, 6).map((d, i) => (
+                <Reveal key={d.slug} delay={(i % 3) * 0.06}>
+                  <DripCard drip={d} />
+                </Reveal>
+              ))}
+            </div>
+          </Container>
+        </section>
+      )}
+
       {/* FAQ */}
-      <section className="pb-20">
+      <section className="pb-20 pt-16">
         <Container className="max-w-3xl flex flex-col gap-8">
           <Reveal>
             <h2 className="font-display text-3xl text-spruce-950">

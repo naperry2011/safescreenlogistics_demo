@@ -32,11 +32,18 @@ Does NOT Own: service content (reads data/services), FAQ content (reads data/faq
 Communicates With: data/services, data/faqs, faq, cta-band, service-card
 Isolation Level: Moderate
 
-## Packages (packages page)
-Owns: pricing tier presentation
-Does NOT Own: package content (data/packages), checkout
-Communicates With: data/packages, data/faqs, faq, cta-band
+## Drip Menu (menu page, drip-card)
+Owns: drip menu presentation (flagship + $250 grid), links into booking
+Does NOT Own: drip content (data/drips), the booking flow itself
+Communicates With: data/drips, data/faqs, faq, cta-band, fluid/*
 Isolation Level: Moderate
+
+## Fluid Identity (components/fluid + globals.css fluid block)
+Owns: signature water/drip motion — gooey background, wave dividers, scroll liquid-fill,
+bubbles, droplet cursor
+Does NOT Own: layout, content, business logic (purely decorative)
+Communicates With: mounted by layout (defs + cursor) and used across pages
+Isolation Level: Strong (decorative; all guarded by touch + reduced-motion)
 
 ## Education Hub (learn pages)
 Owns: article index/featured layout, article block rendering, SSG params

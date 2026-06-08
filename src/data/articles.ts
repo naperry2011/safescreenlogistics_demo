@@ -132,7 +132,7 @@ export const articles: Article[] = [
       },
       {
         type: "p",
-        text: "That's the thinking behind our membership packages: predictable, better value, and built around your goals — so wellness becomes a habit, not a hassle.",
+        text: "That's the thinking behind our drip menu: pick a formula built around your goals and schedule it on a cadence that fits — so wellness becomes a habit, not a hassle.",
       },
     ],
   },

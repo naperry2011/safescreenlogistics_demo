@@ -15,15 +15,21 @@ import { Reveal } from "@/components/reveal";
 import { ServiceCard } from "@/components/service-card";
 import { TestimonialCard } from "@/components/testimonial-card";
 import { CtaBand } from "@/components/cta-band";
+import { DripCard } from "@/components/drip-card";
+import { GooBlobs } from "@/components/fluid/goo-blobs";
+import { Bubbles } from "@/components/fluid/bubbles";
+import { WaveDivider } from "@/components/fluid/wave-divider";
+import { LiquidFill } from "@/components/fluid/liquid-fill";
 import { services } from "@/data/services";
 import { testimonials } from "@/data/testimonials";
 import { articles } from "@/data/articles";
+import { flagshipDrip, standardDrips } from "@/data/drips";
 
 const steps = [
   {
     icon: Sparkles,
-    title: "Choose your service",
-    detail: "Pick IV therapy, a blood draw, or a wellness package built for your goals.",
+    title: "Choose your drip",
+    detail: "Pick IV therapy, a specific drip formula, or a blood draw built around your goals.",
   },
   {
     icon: MapPin,
@@ -51,16 +57,10 @@ export default function HomePage() {
       {/* HERO                                                             */}
       {/* ---------------------------------------------------------------- */}
       <section className="relative overflow-hidden">
-        {/* layered atmosphere */}
-        <div
-          className="pointer-events-none absolute inset-0 -z-10"
-          style={{
-            background:
-              "radial-gradient(900px 500px at 80% -10%, rgba(52,199,182,0.20), transparent 60%), radial-gradient(700px 500px at 10% 10%, rgba(201,168,106,0.12), transparent 55%)",
-          }}
-          aria-hidden
-        />
-        <Container className="pt-16 pb-20 sm:pt-24 sm:pb-28">
+        {/* living, fluid atmosphere */}
+        <GooBlobs tone="mint" className="opacity-70" />
+        <Bubbles className="opacity-60" />
+        <Container className="relative pt-16 pb-20 sm:pt-24 sm:pb-28">
           <div className="grid gap-14 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
             <div className="flex flex-col gap-7">
               <Reveal>
@@ -93,8 +93,8 @@ export default function HomePage() {
               </Reveal>
               <Reveal delay={0.1}>
                 <p className="text-lg text-ink-soft leading-relaxed max-w-xl">
-                  Professional IV hydration, mobile blood draws, and tailored
-                  wellness packages — administered by licensed clinicians,
+                  Professional IV hydration from a tailored drip menu, plus
+                  mobile blood draws — administered by licensed clinicians,
                   wherever and whenever works for you.
                 </p>
               </Reveal>
@@ -149,7 +149,7 @@ export default function HomePage() {
                       <p className="font-display text-xl text-spruce-950">
                         IV Hydration Therapy
                       </p>
-                      <p className="text-sm text-ink-soft">30–60 min · from $129</p>
+                      <p className="text-sm text-ink-soft">30–60 min · from $250</p>
                     </div>
                   </div>
                   <div className="mt-5 grid grid-cols-3 gap-2">
@@ -207,7 +207,7 @@ export default function HomePage() {
             <SectionHeading
               eyebrow="What we offer"
               title="Care that comes to you"
-              description="Three ways we help you feel your best — each delivered with clinical precision and genuine warmth."
+              description="Two core services and a full drip menu — each delivered with clinical precision and genuine warmth."
             />
           </Reveal>
           <div className="grid gap-6 md:grid-cols-3">
@@ -216,15 +216,73 @@ export default function HomePage() {
                 <ServiceCard service={s} />
               </Reveal>
             ))}
+            <Reveal delay={services.length * 0.08}>
+              <Link
+                href="/menu"
+                className="group relative flex h-full flex-col justify-between gap-5 overflow-hidden rounded-[var(--radius-xl2)] bg-spruce-900 text-paper p-7 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_24px_50px_-30px_rgba(14,58,54,0.6)]"
+              >
+                <Bubbles color="rgba(52,199,182,0.4)" />
+                <div className="relative flex items-center justify-between">
+                  <span className="inline-flex size-14 items-center justify-center rounded-2xl bg-paper/10 text-mint-300">
+                    <Sparkles className="size-7" />
+                  </span>
+                  <ArrowRight className="size-5 text-mint-300 group-hover:translate-x-1 transition-transform" />
+                </div>
+                <div className="relative flex flex-col gap-2">
+                  <h3 className="font-display text-xl">Explore the Drip Menu</h3>
+                  <p className="text-sm text-paper/60 leading-relaxed">
+                    11 targeted IV formulas — from Rehydration to the flagship
+                    Full Body Restart.
+                  </p>
+                </div>
+              </Link>
+            </Reveal>
           </div>
+        </Container>
+      </section>
+
+      {/* ---------------------------------------------------------------- */}
+      {/* DRIP MENU TEASER (signature liquid-fill moment)                  */}
+      {/* ---------------------------------------------------------------- */}
+      <section className="relative overflow-hidden pb-8">
+        <GooBlobs tone="mint" className="opacity-50" />
+        <Container className="relative grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:items-center">
+          <Reveal>
+            <LiquidFill caption="Tailored to you" />
+          </Reveal>
+          <Reveal delay={0.1}>
+            <div className="flex flex-col gap-6">
+              <SectionHeading
+                eyebrow="The drip menu"
+                title="A formula for every goal"
+                description="Energy, recovery, beauty, calm, immunity — pick the drip that fits the moment, or let our clinicians recommend one."
+              />
+              <div className="grid gap-4 sm:grid-cols-2">
+                {[flagshipDrip, standardDrips[0], standardDrips[1], standardDrips[2]].map(
+                  (d, i) => (
+                    <Reveal key={d.slug} delay={0.1 + i * 0.06}>
+                      <DripCard drip={d} />
+                    </Reveal>
+                  ),
+                )}
+              </div>
+              <Reveal delay={0.2}>
+                <ButtonLink href="/menu" variant="outline" size="lg" className="self-start">
+                  See the full drip menu <ArrowRight className="size-4" />
+                </ButtonLink>
+              </Reveal>
+            </div>
+          </Reveal>
         </Container>
       </section>
 
       {/* ---------------------------------------------------------------- */}
       {/* HOW IT WORKS                                                     */}
       {/* ---------------------------------------------------------------- */}
-      <section className="py-20 sm:py-24 bg-spruce-950 text-paper">
-        <Container className="flex flex-col gap-14">
+      <WaveDivider fill="var(--spruce-950)" />
+      <section className="relative overflow-hidden py-20 sm:py-24 bg-spruce-950 text-paper">
+        <Bubbles color="rgba(52,199,182,0.35)" />
+        <Container className="relative flex flex-col gap-14">
           <Reveal>
             <SectionHeading
               eyebrow="How it works"
@@ -257,6 +315,7 @@ export default function HomePage() {
           </div>
         </Container>
       </section>
+      <WaveDivider fill="var(--spruce-950)" flip />
 
       {/* ---------------------------------------------------------------- */}
       {/* TESTIMONIALS                                                     */}
