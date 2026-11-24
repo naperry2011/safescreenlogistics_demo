@@ -44,7 +44,7 @@ export const metadata: Metadata = {
     type: "website",
     siteName: site.name,
   },
-  icons: { icon: "/favicon.ico" },
+  twitter: { card: "summary_large_image" },
 };
 
 export default function RootLayout({
