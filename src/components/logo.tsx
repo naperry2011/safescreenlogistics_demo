@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
 import { site } from "@/data/site";
 
-/** Brand mark: a droplet cradled within a shield — hydration + safety. */
+/** Brand mark: a droplet cradled within a shield, hydration + safety. */
 export function Logo({
   className,
   variant = "dark",

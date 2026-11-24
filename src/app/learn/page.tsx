@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { SectionHeading } from "@/components/ui/section-heading";
-import { Reveal } from "@/components/reveal";
 import { FaqList } from "@/components/faq";
 import { CtaBand } from "@/components/cta-band";
 import { articles } from "@/data/articles";
@@ -12,7 +10,7 @@ import { faqs } from "@/data/faqs";
 export const metadata: Metadata = {
   title: "Learn",
   description:
-    "Clear, no-hype wellness education from Safe Screen Logistics — hydration, recovery, lab work, and building routines that stick.",
+    "Clear, no-hype guidance from Safe Screen Logistics on hydration, recovery, lab work, and building routines that stick.",
 };
 
 export default function LearnPage() {
@@ -20,89 +18,57 @@ export default function LearnPage() {
 
   return (
     <>
-      <section className="pt-16 pb-12 sm:pt-24">
+      <section className="pt-16 pb-14 sm:pt-24">
         <Container>
-          <Reveal>
-            <SectionHeading
-              as="h1"
-              eyebrow="The Journal"
-              title="Wellness, explained simply"
-              description="Practical, honest guidance from our clinical team — no hype, no jargon."
-            />
-          </Reveal>
+          <SectionHeading
+            as="h1"
+            title="Plain answers before your visit"
+            description="Practical guidance from our clinical team. No hype, no jargon."
+          />
         </Container>
       </section>
 
-      {/* Featured */}
-      <section className="pb-12">
-        <Container>
-          <Reveal>
-            <Link
-              href={`/learn/${featured.slug}`}
-              className="group grid gap-8 rounded-[var(--radius-xl2)] bg-spruce-900 text-paper p-8 sm:p-12 lg:grid-cols-2 lg:items-center overflow-hidden relative"
-            >
-              <div
-                className="pointer-events-none absolute -right-20 -top-20 size-72 rounded-full blur-3xl opacity-30"
-                style={{ background: "radial-gradient(circle, var(--mint-500), transparent 70%)" }}
-                aria-hidden
-              />
-              <div className="relative flex flex-col gap-4">
-                <span className="eyebrow text-mint-400">{featured.category} · Featured</span>
-                <h2 className="font-display text-3xl sm:text-4xl leading-tight group-hover:text-mint-300 transition-colors">
-                  {featured.title}
-                </h2>
-                <p className="text-paper/70 leading-relaxed">{featured.excerpt}</p>
-                <span className="inline-flex items-center gap-1.5 text-sm text-mint-300 mt-2">
-                  Read article <ArrowUpRight className="size-4" />
-                </span>
-              </div>
-              <div className="relative hidden lg:flex items-center justify-center">
-                <span className="font-display text-[9rem] leading-none text-paper/5">
-                  {featured.readMinutes}
-                  <span className="text-3xl align-top">min</span>
-                </span>
-              </div>
-            </Link>
-          </Reveal>
-        </Container>
-      </section>
-
-      {/* Grid */}
       <section className="pb-20">
         <Container>
-          <div className="grid gap-6 md:grid-cols-3">
-            {rest.map((a, i) => (
-              <Reveal key={a.slug} delay={i * 0.08}>
+          <Link
+            href={`/learn/${featured.slug}`}
+            className="group grid gap-6 border-t-2 border-spruce-950 py-10 lg:grid-cols-[1.2fr_0.8fr] lg:gap-16 lg:py-14"
+          >
+            <h2 className="font-display text-4xl leading-[1.02] text-spruce-950 transition-colors group-hover:text-spruce-600 sm:text-6xl">
+              {featured.title}
+            </h2>
+            <div className="flex flex-col gap-4 lg:pt-2">
+              <p className="text-lg leading-relaxed text-ink">{featured.excerpt}</p>
+              <p className="text-sm text-ink-soft">
+                {featured.category}, {featured.readMinutes} min read
+              </p>
+            </div>
+          </Link>
+          <ul className="border-t border-spruce-900/15">
+            {rest.map((a) => (
+              <li key={a.slug} className="border-b border-spruce-900/15">
                 <Link
                   href={`/learn/${a.slug}`}
-                  className="group flex h-full flex-col gap-3 rounded-[var(--radius-xl2)] bg-card border border-line p-6 hover:border-mint-400 hover:-translate-y-1 transition-all"
+                  className="group grid gap-2 py-7 md:grid-cols-[1fr_1.2fr_auto] md:items-baseline md:gap-10"
                 >
-                  <div className="flex items-center justify-between">
-                    <span className="eyebrow text-mint-500">{a.category}</span>
-                    <span className="text-xs text-ink-soft/70">{a.readMinutes} min</span>
-                  </div>
-                  <h3 className="font-display text-lg text-spruce-950 group-hover:text-spruce-700">
+                  <span className="font-display text-2xl leading-snug text-spruce-950 transition-colors group-hover:text-spruce-600">
                     {a.title}
-                  </h3>
-                  <p className="text-sm text-ink-soft leading-relaxed flex-1">
-                    {a.excerpt}
-                  </p>
+                  </span>
+                  <span className="leading-relaxed text-ink-soft">{a.excerpt}</span>
+                  <span className="text-sm text-ink-soft">
+                    {a.category}, {a.readMinutes} min
+                  </span>
                 </Link>
-              </Reveal>
+              </li>
             ))}
-          </div>
+          </ul>
         </Container>
       </section>
 
-      {/* FAQ */}
       <section className="pb-20">
-        <Container className="max-w-3xl flex flex-col gap-8">
-          <Reveal>
-            <SectionHeading eyebrow="Good to know" title="Frequently asked questions" />
-          </Reveal>
-          <Reveal delay={0.05}>
-            <FaqList items={faqs} />
-          </Reveal>
+        <Container className="flex max-w-3xl flex-col gap-8">
+          <SectionHeading title="Frequently asked questions" />
+          <FaqList items={faqs} />
         </Container>
       </section>
 

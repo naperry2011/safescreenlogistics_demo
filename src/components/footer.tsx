@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Phone, Mail } from "lucide-react";
+import { Mail } from "lucide-react";
 import { site } from "@/data/site";
 import { services } from "@/data/services";
 import { Container } from "@/components/ui/container";
@@ -14,15 +14,15 @@ export function Footer() {
           <div className="md:col-span-4 flex flex-col gap-5">
             <Logo variant="light" />
             <p className="text-sm leading-relaxed text-paper/60 max-w-xs">
-              {site.tagline} Professional mobile IV therapy, a tailored drip
-              menu, and blood draws — on your schedule.
+              DOT and non-DOT testing, annual and insurance blood draws, and
+              mobile IV therapy, on your schedule.
             </p>
-            <div className="flex flex-col gap-2 text-sm">
-              <a href={site.phoneHref} className="inline-flex items-center gap-2 hover:text-mint-300">
-                <Phone className="size-4" /> {site.phone}
+            <div className="flex flex-col gap-2">
+              <a href={site.phoneHref} className="font-display text-3xl text-paper hover:text-mint-300 transition-colors">
+                {site.phone}
               </a>
-              <a href={site.emailHref} className="inline-flex items-center gap-2 hover:text-mint-300">
-                <Mail className="size-4" /> {site.email}
+              <a href={site.emailHref} className="inline-flex items-center gap-2 text-sm hover:text-mint-300 break-all">
+                <Mail className="size-4 shrink-0" /> {site.email}
               </a>
             </div>
           </div>
@@ -54,9 +54,9 @@ export function Footer() {
           </div>
 
           <div className="md:col-span-4 flex flex-col gap-4">
-            <h3 className="eyebrow text-mint-400">Wellness updates</h3>
+            <h3 className="eyebrow text-mint-400">Updates</h3>
             <p className="text-sm text-paper/60">
-              Tips, offers, and new services. No spam — unsubscribe anytime.
+              Tips, offers, and new services. No spam, unsubscribe anytime.
             </p>
             <NewsletterForm variant="footer" />
           </div>
@@ -64,15 +64,17 @@ export function Footer() {
 
         <div className="mt-14 pt-8 border-t border-paper/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-paper/50">
           <p>
-            © {new Date().getFullYear()} {site.name}. All rights reserved.
+            © {new Date().getFullYear()} {site.name}. All rights reserved. {site.domain}
           </p>
-          <div className="flex items-center gap-5">
-            {site.social.map((s) => (
-              <a key={s.label} href={s.href} className="hover:text-mint-300">
-                {s.label}
-              </a>
-            ))}
-          </div>
+          {site.social.length > 0 && (
+            <div className="flex items-center gap-5">
+              {site.social.map((s) => (
+                <a key={s.label} href={s.href} className="hover:text-mint-300">
+                  {s.label}
+                </a>
+              ))}
+            </div>
+          )}
         </div>
       </Container>
     </footer>

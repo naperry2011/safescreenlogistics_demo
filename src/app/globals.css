@@ -1,16 +1,17 @@
 @import "tailwindcss";
 
 /* ------------------------------------------------------------------ */
-/*  Safe Screen Logistics — Design Tokens                              */
-/*  Aesthetic: refined medical-wellness. Deep spruce teal + warm       */
-/*  paper, an aqua/mint vitality accent, and a soft gold for warmth.   */
+/*  Safe Screen Logistics, Design Tokens                              */
+/*  Aesthetic: the collection kit. Deep petrol, cool label-white, and  */
+/*  accents taken from specimen tube caps (lavender, gold) and the     */
+/*  liquids themselves (crimson, amber, mint).                         */
 /* ------------------------------------------------------------------ */
 
 :root {
   /* Brand */
-  --spruce-950: #07201d;
-  --spruce-900: #0c2b27;
-  --spruce-800: #0e3a36;
+  --spruce-950: #061c1f;
+  --spruce-900: #0a282b;
+  --spruce-800: #0e3a3c;
   --spruce-700: #16524b;
   --spruce-600: #1d6b61;
 
@@ -19,16 +20,21 @@
   --mint-300: #7bdccf;
   --mint-100: #d7f2ec;
 
-  --gold-500: #c9a86a;
-  --gold-300: #e3cda0;
+  --gold-500: #e0a32b;
+  --gold-300: #f0cf85;
+
+  --lav-500: #8d7bd0;
+  --lav-300: #c3b8ec;
+  --crimson-500: #c5354a;
+  --amber-400: #f0b94a;
 
   /* Surfaces */
-  --paper: #f6f3ec;   /* warm off-white page background */
-  --paper-2: #efeae0; /* slightly deeper section band */
+  --paper: #f3f6f4;   /* cool label-white page background */
+  --paper-2: #e6ece8; /* slightly deeper section band */
   --card: #ffffff;
   --ink: #0c1f1d;     /* primary text */
-  --ink-soft: #3f534f;/* secondary text */
-  --line: #e3ddd1;    /* hairline borders */
+  --ink-soft: #45585a;/* secondary text */
+  --line: #d5ded9;    /* hairline borders */
 
   /* Semantic */
   --background: var(--paper);
@@ -52,6 +58,10 @@
 
   --color-gold-500: var(--gold-500);
   --color-gold-300: var(--gold-300);
+  --color-lav-500: var(--lav-500);
+  --color-lav-300: var(--lav-300);
+  --color-crimson-500: var(--crimson-500);
+  --color-amber-400: var(--amber-400);
 
   --color-paper: var(--paper);
   --color-paper-2: var(--paper-2);
@@ -60,11 +70,11 @@
   --color-ink-soft: var(--ink-soft);
   --color-line: var(--line);
 
-  --font-display: var(--font-fraunces);
-  --font-sans: var(--font-geist-sans);
+  --font-display: var(--font-display-face);
+  --font-sans: var(--font-body);
   --font-mono: var(--font-geist-mono);
 
-  --radius-xl2: 1.75rem;
+  --radius-xl2: 1.25rem;
 }
 
 * {
@@ -79,31 +89,55 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans), system-ui, sans-serif;
-  /* Subtle paper grain for depth — never a flat slab of color. */
-  background-image: radial-gradient(
-    circle at 1px 1px,
-    rgba(12, 31, 29, 0.025) 1px,
-    transparent 0
-  );
-  background-size: 22px 22px;
   -webkit-font-smoothing: antialiased;
 }
 
-/* Display headings use the optical serif with tight tracking. */
+/* Display headings: a characterful grotesque, set tight and heavy. */
 .font-display {
-  font-family: var(--font-display), Georgia, serif;
+  font-family: var(--font-display), system-ui, sans-serif;
   font-optical-sizing: auto;
-  letter-spacing: -0.015em;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  text-wrap: balance;
 }
 
-/* Small clinical labels — monospace, uppercase, spaced. */
+/* Small labels: plain sentence-case sans, a step heavier than body. */
 .eyebrow {
-  font-family: var(--font-mono), monospace;
-  text-transform: uppercase;
-  letter-spacing: 0.18em;
-  font-size: 0.72rem;
-  font-weight: 500;
+  font-family: var(--font-sans), system-ui, sans-serif;
+  letter-spacing: 0.01em;
+  font-size: 0.8rem;
+  font-weight: 600;
 }
+
+/* ------------------------------------------------------------------ */
+/*  Specimen rack (home hero): vessels fill once, in sequence, on load */
+/* ------------------------------------------------------------------ */
+@keyframes vessel-fill {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+.vessel-liquid {
+  transform-box: fill-box;
+  animation: vessel-fill 1.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: var(--d, 0s);
+}
+@keyframes vessel-in {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.vessel-in {
+  animation: vessel-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: var(--d, 0s);
+}
+@keyframes iv-drop {
+  0% { transform: translateY(0); opacity: 0; }
+  15% { opacity: 1; }
+  70% { transform: translateY(22px); opacity: 1; }
+  100% { transform: translateY(22px); opacity: 0; }
+}
+.iv-drop { animation: iv-drop 2.4s ease-in 2.6s infinite both; }
+.vessel svg { transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1); }
+.vessel:hover svg, .vessel:focus-visible svg { transform: translateY(-8px); }
 
 /* Selection + focus polish */
 ::selection {
@@ -118,34 +152,10 @@ body {
 }
 
 /* ------------------------------------------------------------------ */
-/*  "Fluid & living" — signature water/drip motion system              */
+/*  Liquid motion used by the scroll-driven drip vessel                 */
 /*  All animations below are auto-disabled by the reduced-motion       */
 /*  block at the bottom of this file.                                  */
 /* ------------------------------------------------------------------ */
-
-/* Gooey metaball container: blobs merge into organic liquid shapes. */
-.goo {
-  filter: url(#goo-filter);
-}
-
-@keyframes blob-a {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  33% { transform: translate(8%, 10%) scale(1.12); }
-  66% { transform: translate(-6%, 4%) scale(0.92); }
-}
-@keyframes blob-b {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  40% { transform: translate(-10%, 8%) scale(1.15); }
-  70% { transform: translate(6%, -8%) scale(0.9); }
-}
-@keyframes blob-c {
-  0%, 100% { transform: translate(0, 0) scale(1.05); }
-  50% { transform: translate(10%, -10%) scale(0.85); }
-}
-
-.blob-a { animation: blob-a 18s ease-in-out infinite; }
-.blob-b { animation: blob-b 22s ease-in-out infinite; }
-.blob-c { animation: blob-c 26s ease-in-out infinite; }
 
 /* Rising bubbles */
 @keyframes bubble-rise {
@@ -166,21 +176,6 @@ body {
 }
 .wave-anim { animation: wave-shift 14s linear infinite; }
 
-/* Droplet cursor ripple on click */
-@keyframes droplet-ripple {
-  0% { transform: translate(-50%, -50%) scale(0.2); opacity: 0.6; }
-  100% { transform: translate(-50%, -50%) scale(2.6); opacity: 0; }
-}
-.droplet-ripple { animation: droplet-ripple 0.6s ease-out forwards; }
-
-/* On touch / coarse-pointer devices (phones, tablets) skip the perpetual
-   custom cursor and the expensive full-viewport gooey SVG blur — the blobs
-   still render as soft circles, so the look survives without the paint cost. */
-@media (hover: none), (pointer: coarse) {
-  .droplet-cursor-root { display: none !important; }
-  .goo { filter: none !important; }
-}
-
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -192,5 +187,4 @@ body {
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
   }
-  .droplet-cursor-root { display: none !important; }
 }

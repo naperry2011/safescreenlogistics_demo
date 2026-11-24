@@ -21,9 +21,9 @@ type Mode = "mobile" | "clinic";
 const STEPS = ["Service", "Where", "Time", "Details", "Confirm"] as const;
 
 const CLINICS = [
-  "Downtown Wellness Center — Indianapolis",
-  "Northside Health Suite — Carmel",
-  "Eastgate Clinic — Fishers",
+  "Downtown Wellness Center, Indianapolis",
+  "Northside Health Suite, Carmel",
+  "Eastgate Clinic, Fishers",
 ];
 
 /** Generate the next 7 calendar days (label + ISO date). Client-side only. */
@@ -138,7 +138,7 @@ export function BookingWizard() {
           <Row label="Service" value={service.name} />
           {showDripPicker && drip && <Row label="Drip" value={drip.name} />}
           <Row label="Where" value={mode === "mobile" ? address : location} />
-          <Row label="When" value={`${date} · ${time}`} />
+          <Row label="When" value={`${date}, ${time}`} />
           <Row label="Name" value={form.name} />
         </div>
         <ButtonLink href="/" variant="outline" className="mt-3">
@@ -182,10 +182,10 @@ export function BookingWizard() {
       </div>
 
       <div className="p-6 sm:p-10">
-        {/* STEP 0 — service (+ drip picker for IV therapy) */}
+        {/* STEP 0: service (+ drip picker for IV therapy) */}
         {step === 0 && (
           <Fieldset legend="Which service would you like?">
-            <div className="grid gap-3 sm:grid-cols-2">
+            <div className="grid gap-3 sm:grid-cols-3">
               {services.map((s) => {
                 const Icon = s.icon;
                 const active = s.slug === serviceSlug;
@@ -214,7 +214,7 @@ export function BookingWizard() {
             {showDripPicker && (
               <div className="mt-6">
                 <p className="eyebrow text-ink-soft mb-3">
-                  Choose your drip <span className="normal-case tracking-normal text-ink-soft/70">(optional — we can recommend one)</span>
+                  Choose your drip <span className="normal-case tracking-normal text-ink-soft/70">(optional, we can recommend one)</span>
                 </p>
                 <div className="grid gap-2 sm:grid-cols-2">
                   {drips.map((d) => {
@@ -244,7 +244,7 @@ export function BookingWizard() {
           </Fieldset>
         )}
 
-        {/* STEP 1 — where */}
+        {/* STEP 1: where */}
         {step === 1 && (
           <Fieldset legend="Where should we meet you?">
             <div className="grid gap-3 sm:grid-cols-2">
@@ -292,7 +292,7 @@ export function BookingWizard() {
           </Fieldset>
         )}
 
-        {/* STEP 2 — time */}
+        {/* STEP 2: time */}
         {step === 2 && (
           <Fieldset legend="Pick a day and time">
             <p className="eyebrow text-ink-soft mb-3">Select a day</p>
@@ -335,7 +335,7 @@ export function BookingWizard() {
           </Fieldset>
         )}
 
-        {/* STEP 3 — details */}
+        {/* STEP 3: details */}
         {step === 3 && (
           <Fieldset legend="Your details">
             <div className="grid gap-4 sm:grid-cols-2">
@@ -376,14 +376,14 @@ export function BookingWizard() {
           </Fieldset>
         )}
 
-        {/* STEP 4 — confirm */}
+        {/* STEP 4: confirm */}
         {step === 4 && (
           <Fieldset legend="Review &amp; confirm">
             <div className="rounded-2xl bg-paper-2/50 border border-line p-6 flex flex-col gap-3">
               <Row label="Service" value={service.name} />
-              {showDripPicker && drip && <Row label="Drip" value={`${drip.name} · ${drip.price}`} />}
-              <Row label="Where" value={mode === "mobile" ? `Mobile · ${address}` : location} />
-              <Row label="When" value={`${date} · ${time}`} />
+              {showDripPicker && drip && <Row label="Drip" value={`${drip.name}, ${drip.price}`} />}
+              <Row label="Where" value={mode === "mobile" ? `Mobile, ${address}` : location} />
+              <Row label="When" value={`${date}, ${time}`} />
               <Row label="Name" value={form.name} />
               <Row label="Email" value={form.email} />
               <Row label="Phone" value={form.phone} />

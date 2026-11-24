@@ -3,7 +3,7 @@
 Responsibility boundaries between systems.
 
 ## Content Data Layer (src/data)
-Owns: all copy, pricing, contact details, nav, testimonials, FAQs, article content + lookup helpers
+Owns: all copy, pricing, contact details, domain, nav, testimonials, FAQs, article content + lookup helpers
 Does NOT Own: rendering, styling, network, validation
 Communicates With: pages and presentational components (via import)
 Isolation Level: Strong (pure data; no UI/runtime deps)
@@ -26,24 +26,23 @@ Does NOT Own: real scheduling/payment (mocked), service definitions (reads data/
 Communicates With: data/services, /api/book, ui/button
 Isolation Level: Moderate (self-contained UI; API is a mock seam)
 
-## Services (services pages, service-card)
+## Services (services pages)
 Owns: service presentation (overview + detail), SSG params
 Does NOT Own: service content (reads data/services), FAQ content (reads data/faqs)
-Communicates With: data/services, data/faqs, faq, cta-band, service-card
+Communicates With: data/services, data/faqs, faq, cta-band, drip-card
 Isolation Level: Moderate
 
 ## Drip Menu (menu page, drip-card)
-Owns: drip menu presentation (flagship + $250 grid), links into booking
+Owns: drip menu presentation (flagship + $250 menu list), links into booking
 Does NOT Own: drip content (data/drips), the booking flow itself
-Communicates With: data/drips, data/faqs, faq, cta-band, fluid/*
+Communicates With: data/drips, data/faqs, faq, cta-band
 Isolation Level: Moderate
 
-## Fluid Identity (components/fluid + globals.css fluid block)
-Owns: signature water/drip motion — gooey background, wave dividers, scroll liquid-fill,
-bubbles, droplet cursor
-Does NOT Own: layout, content, business logic (purely decorative)
-Communicates With: mounted by layout (defs + cursor) and used across pages
-Isolation Level: Strong (decorative; all guarded by touch + reduced-motion)
+## Hero and Motion (specimen-rack, fluid/liquid-fill + globals.css keyframes)
+Owns: the home hero vessels (fill once on load) and the scroll-driven drip vessel
+Does NOT Own: layout, content, business logic. Service links in the rack are hardcoded slugs
+Communicates With: used only by the home page
+Isolation Level: Strong (decorative; guarded by reduced-motion)
 
 ## Education Hub (learn pages)
 Owns: article index/featured layout, article block rendering, SSG params
@@ -66,5 +65,5 @@ Isolation Level: Strong (small, self-contained)
 ## SEO (sitemap, robots, layout metadata)
 Owns: crawler artifacts + page metadata
 Does NOT Own: route definitions (mirrors them), content
-Communicates With: data/services, data/articles
+Communicates With: data/site (url), data/services, data/articles
 Isolation Level: Moderate (must stay in sync with routes manually)

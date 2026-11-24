@@ -26,10 +26,8 @@ export function Header() {
   return (
     <header
       className={cn(
-        "sticky top-0 z-50 transition-all duration-300",
-        scrolled
-          ? "bg-paper/85 backdrop-blur-md border-b border-line shadow-[0_4px_24px_-16px_rgba(12,31,29,0.5)]"
-          : "bg-transparent border-b border-transparent",
+        "sticky top-0 z-50 border-b bg-paper/95 backdrop-blur-md transition-colors duration-300",
+        scrolled ? "border-line" : "border-transparent",
       )}
     >
       <Container className="flex h-18 items-center justify-between py-3">
@@ -67,7 +65,7 @@ export function Header() {
             {site.phone}
           </a>
           <ButtonLink href="/book" size="sm">
-            Book Now
+            Book a visit
           </ButtonLink>
         </div>
 
@@ -101,7 +99,7 @@ export function Header() {
           ))}
           <div className="flex items-center gap-3 pt-3 mt-2 border-t border-line">
             <ButtonLink href="/book" className="flex-1" size="md" onClick={() => setOpen(false)}>
-              Book Now
+              Book a visit
             </ButtonLink>
             <a
               href={site.phoneHref}

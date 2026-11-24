@@ -1,14 +1,12 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Fraunces } from "next/font/google";
+import { Bricolage_Grotesque, Instrument_Sans, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
-import { FluidDefs } from "@/components/fluid/fluid-defs";
-import { DropletCursor } from "@/components/fluid/droplet-cursor";
 import { site } from "@/data/site";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const body = Instrument_Sans({
+  variable: "--font-body",
   subsets: ["latin"],
 });
 
@@ -17,20 +15,23 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const fraunces = Fraunces({
-  variable: "--font-fraunces",
+const display = Bricolage_Grotesque({
+  variable: "--font-display-face",
   subsets: ["latin"],
-  axes: ["opsz", "SOFT"],
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://safescreenlogistics.com"),
+  metadataBase: new URL(site.url),
   title: {
-    default: `${site.name} — Mobile IV Therapy & Wellness`,
-    template: `%s · ${site.name}`,
+    default: `${site.name} | DOT and Non-DOT Testing, Blood Draws, IV Therapy`,
+    template: `%s | ${site.name}`,
   },
   description: site.description,
   keywords: [
+    "DOT drug testing",
+    "non-DOT drug testing",
+    "annual blood draws",
+    "insurance blood draws",
     "IV therapy",
     "mobile IV hydration",
     "IV drip menu",
@@ -38,7 +39,7 @@ export const metadata: Metadata = {
     "Safe Screen Logistics",
   ],
   openGraph: {
-    title: `${site.name} — Mobile IV Therapy & Wellness`,
+    title: `${site.name} | DOT and Non-DOT Testing, Blood Draws, IV Therapy`,
     description: site.description,
     type: "website",
     siteName: site.name,
@@ -52,11 +53,9 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} ${fraunces.variable} h-full antialiased`}
+      className={`${body.variable} ${geistMono.variable} ${display.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        <FluidDefs />
-        <DropletCursor />
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />

@@ -3,7 +3,7 @@ export type Faq = { q: string; a: string };
 export const faqs: Faq[] = [
   {
     q: "Do you come to me, or do I visit a location?",
-    a: "We're built for flexibility. You can choose a mobile visit — our clinician comes to your home, office, or gym — or book at a partner location during scheduling. Availability is confirmed when you book.",
+    a: "We're built for flexibility. You can choose a mobile visit, where our clinician comes to your home, office, or gym, or book at a partner location during scheduling. Availability is confirmed when you book.",
   },
   {
     q: "Are your clinicians licensed?",
@@ -11,7 +11,15 @@ export const faqs: Faq[] = [
   },
   {
     q: "How long does a typical session take?",
-    a: "IV hydration sessions usually run 30–60 minutes. Blood draws are quick — typically 15–20 minutes including setup.",
+    a: "IV hydration sessions usually run 30–60 minutes. Blood draws are quick, typically 15–20 minutes including setup. A testing collection takes about the same.",
+  },
+  {
+    q: "What is the difference between DOT and non-DOT testing?",
+    a: "DOT testing is federally regulated for safety-sensitive transportation employees, such as CDL drivers, and follows the 49 CFR Part 40 procedure. Non-DOT testing is set by an employer's own policy, so the panel and the reasons for testing can vary.",
+  },
+  {
+    q: "Do you handle annual and insurance blood draws?",
+    a: "Yes. We collect yearly lab work ordered by your doctor or wellness program, and draws required by an insurer. Have your order or insurer paperwork ready when you book.",
   },
   {
     q: "How do I pay?",
@@ -19,7 +27,7 @@ export const faqs: Faq[] = [
   },
   {
     q: "Can I customize my IV blend?",
-    a: "Absolutely. During your brief consultation we tailor the blend to your goals — hydration, recovery, immunity, or an energy reset.",
+    a: "Absolutely. During your brief consultation we tailor the blend to your goals: hydration, recovery, immunity, or an energy reset.",
   },
   {
     q: "What if I need to reschedule?",

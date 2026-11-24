@@ -1,50 +1,44 @@
-import { Phone } from "lucide-react";
+import { Phone, Mail } from "lucide-react";
 import { site } from "@/data/site";
 import { Container } from "@/components/ui/container";
 import { ButtonLink } from "@/components/ui/button";
-import { Reveal } from "@/components/reveal";
 
 export function CtaBand({
-  title = "Ready to feel your best?",
-  subtitle = "Book in under two minutes. A licensed clinician will take care of the rest.",
+  title = "Tell us where and when.",
+  subtitle = "Book online in a couple of minutes, or call or email and we will set it up with you.",
 }: {
   title?: string;
   subtitle?: string;
 }) {
   return (
     <Container>
-      <Reveal>
-        <div className="relative overflow-hidden rounded-[var(--radius-xl2)] bg-spruce-900 text-paper px-8 py-14 sm:px-14 sm:py-16">
-          {/* atmospheric accent glow */}
-          <div
-            className="pointer-events-none absolute -right-20 -top-24 size-72 rounded-full blur-3xl opacity-40"
-            style={{ background: "radial-gradient(circle, var(--mint-500), transparent 70%)" }}
-            aria-hidden
-          />
-          <div
-            className="pointer-events-none absolute -left-16 -bottom-20 size-64 rounded-full blur-3xl opacity-20"
-            style={{ background: "radial-gradient(circle, var(--gold-500), transparent 70%)" }}
-            aria-hidden
-          />
-          <div className="relative flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
-            <div className="max-w-xl flex flex-col gap-3">
-              <h2 className="font-display text-3xl sm:text-4xl leading-tight">{title}</h2>
-              <p className="text-paper/70 text-lg">{subtitle}</p>
-            </div>
+      <div className="rounded-[var(--radius-xl2)] bg-spruce-950 px-8 py-14 text-paper sm:px-14 sm:py-20">
+        <div className="flex flex-col gap-10 md:flex-row md:items-end md:justify-between">
+          <div className="flex max-w-xl flex-col gap-4">
+            <h2 className="font-display text-4xl leading-[1.02] sm:text-6xl">{title}</h2>
+            <p className="text-lg text-paper/70">{subtitle}</p>
+          </div>
+          <div className="flex flex-col gap-4 md:items-end">
             <div className="flex flex-wrap items-center gap-3">
               <ButtonLink href="/book" variant="secondary" size="lg">
-                Book Now
+                Book a visit
               </ButtonLink>
               <a
                 href={site.phoneHref}
-                className="inline-flex items-center gap-2 rounded-full border border-paper/25 px-6 h-14 text-paper hover:bg-paper/10 transition-colors"
+                className="inline-flex h-14 items-center gap-2 rounded-full border border-paper/25 px-6 text-paper transition-colors hover:bg-paper/10"
               >
                 <Phone className="size-4" /> {site.phone}
               </a>
             </div>
+            <a
+              href={site.emailHref}
+              className="inline-flex items-center gap-2 break-all text-paper/75 transition-colors hover:text-mint-300"
+            >
+              <Mail className="size-4 shrink-0" /> {site.email}
+            </a>
           </div>
         </div>
-      </Reveal>
+      </div>
     </Container>
   );
 }
