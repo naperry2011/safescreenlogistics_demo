@@ -16,7 +16,7 @@ import {
 /**
  * The real IV drip menu, sourced from the live shop (safescreenlogistics.com/shop):
  * ten condition-targeted drips at $250 and a flagship "Full Body Restart" at $500.
- * Descriptions are written placeholders (the shop lists none) — swap with clinical
+ * Descriptions are written placeholders (the shop lists none); swap with clinical
  * copy when available. Pricing/blurbs all live here so they're easy to edit.
  */
 export type Drip = {
@@ -38,7 +38,7 @@ export const drips: Drip[] = [
     price: "$500",    icon: Sparkles,
     flagship: true,
     blurb:
-      "Our most complete infusion — a high-dose blend of hydration, vitamins, antioxidants, and amino acids designed to reset you from head to toe. The flagship reset for when you want everything, all at once.",
+      "Our most complete infusion: a high-dose blend of hydration, vitamins, antioxidants, and amino acids designed to reset you from head to toe. The flagship reset for when you want everything, all at once.",
     bestFor: ["Deep recovery", "Total reset", "Run-down & depleted"],
   },
   {

@@ -1,8 +1,9 @@
 import type { MetadataRoute } from "next";
 import { services } from "@/data/services";
+import { site } from "@/data/site";
 import { articles } from "@/data/articles";
 
-const base = "https://safescreenlogistics.com";
+const base = site.url;
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes = [

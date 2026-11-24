@@ -48,7 +48,7 @@ export const articles: Article[] = [
       { type: "h2", text: "What a session feels like" },
       {
         type: "p",
-        text: "Most people describe it as calm and easy — a brief pinch, then 30 to 60 minutes to relax while you rehydrate. Many notice they feel clearer and more energized within the hour.",
+        text: "Most people describe it as calm and easy: a brief pinch, then 30 to 60 minutes to relax while you rehydrate. Many notice they feel clearer and more energized within the hour.",
       },
     ],
   },
@@ -76,7 +76,7 @@ export const articles: Article[] = [
       },
       {
         type: "p",
-        text: "When you need a faster, more complete reset — after a race, a long flight, or a demanding week — an IV session can restore balance in a single sitting.",
+        text: "When you need a faster, more complete reset (after a race, a long flight, or a demanding week), an IV session can restore balance in a single sitting.",
       },
     ],
   },
@@ -98,7 +98,7 @@ export const articles: Article[] = [
         type: "ul",
         items: [
           "Confirm any fasting requirements for your specific test",
-          "Drink water beforehand — hydrated veins are easier to access",
+          "Drink water beforehand. Hydrated veins are easier to access",
           "Have your requisition or order details handy",
         ],
       },
@@ -119,7 +119,7 @@ export const articles: Article[] = [
     body: [
       {
         type: "p",
-        text: "The best wellness plan is the one you'll actually follow. That usually means fewer, simpler commitments — done reliably.",
+        text: "The best wellness plan is the one you'll actually follow. That usually means fewer, simpler commitments that you keep.",
       },
       { type: "h2", text: "Make it frictionless" },
       {
@@ -132,7 +132,7 @@ export const articles: Article[] = [
       },
       {
         type: "p",
-        text: "That's the thinking behind our drip menu: pick a formula built around your goals and schedule it on a cadence that fits — so wellness becomes a habit, not a hassle.",
+        text: "That's the thinking behind our drip menu: pick a formula built around your goals and schedule it on a cadence that fits, so wellness becomes a habit, not a hassle.",
       },
     ],
   },

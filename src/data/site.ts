@@ -6,24 +6,22 @@
 export const site = {
   name: "Safe Screen Logistics",
   shortName: "Safe Screen",
-  tagline: "Clinical-grade wellness, delivered with care.",
+  domain: "gosafescreen.com",
+  url: "https://gosafescreen.com",
+  tagline: "Testing, blood draws and IV therapy that come to you.",
   description:
-    "Safe Screen Logistics provides professional mobile IV hydration therapy and blood draw services — featuring a tailored IV drip menu delivered safely, comfortably, and on your schedule.",
+    "Safe Screen Logistics provides DOT and non-DOT testing, annual and insurance blood draws, and mobile IV hydration therapy, collected on site and on your schedule.",
   phone: "765-372-6440",
   phoneHref: "tel:+17653726440",
-  email: "support@safescreenlogistics.com",
-  emailHref: "mailto:support@safescreenlogistics.com",
+  email: "safescreenlogistics@gmail.com",
+  emailHref: "mailto:safescreenlogistics@gmail.com",
   hours: [
     { day: "Mon – Fri", time: "7:00 AM – 8:00 PM" },
     { day: "Saturday", time: "8:00 AM – 6:00 PM" },
     { day: "Sunday", time: "By appointment" },
   ],
-  social: [
-    { label: "Instagram", href: "https://instagram.com" },
-    { label: "Facebook", href: "https://facebook.com" },
-    { label: "TikTok", href: "https://tiktok.com" },
-    { label: "Twitter", href: "https://twitter.com" },
-  ],
+  /** Real account URLs only. The footer hides the row while this is empty. */
+  social: [] as { label: string; href: string }[],
   nav: [
     { label: "Services", href: "/services" },
     { label: "Drip Menu", href: "/menu" },

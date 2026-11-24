@@ -1,7 +1,8 @@
 # Safe Screen Logistics
 
-A complete rebuild of [safescreenlogistics.com](https://safescreenlogistics.com) — a refined,
-clinical-and-trustworthy site for a mobile IV therapy & wellness business. Built on **Next.js 16
+The Safe Screen Logistics site, served at [gosafescreen.com](https://gosafescreen.com). It is a
+complete rebuild of the original safescreenlogistics.com: a site for a mobile testing (DOT and
+non-DOT), blood draw, and IV therapy business. Built on **Next.js 16
 (App Router) + TypeScript + Tailwind v4**, designed to deploy on **Vercel**.
 
 ## Highlights
@@ -51,5 +52,5 @@ npm run lint
 1. Push this repo to GitHub.
 2. In Vercel, "Add New Project" → import the repo. Framework preset auto-detects **Next.js**; no extra
    config needed.
-3. Deploy. Add the `safescreenlogistics.com` domain in **Project → Settings → Domains** when ready to
-   cut over from Hostinger.
+3. Deploy. Add the `gosafescreen.com` domain in **Project → Settings → Domains** when ready to
+   go live. The domain is set in `src/data/site.ts` (`domain` and `url`).

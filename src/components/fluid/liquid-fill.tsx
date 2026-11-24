@@ -11,7 +11,7 @@ import {
 import { cn } from "@/lib/utils";
 
 /**
- * A vessel that fills with liquid as it scrolls through the viewport — the
+ * A vessel that fills with liquid as it scrolls through the viewport, the
  * signature "hydration" moment. The fill level is driven by scroll progress;
  * a doubled wave SVG drifts across the liquid surface for a living shimmer.
  * Under prefers-reduced-motion the vessel renders ~70% full and static.
@@ -42,7 +42,7 @@ export function LiquidFill({
         className,
       )}
     >
-      {/* measurement ticks — a clinical touch */}
+      {/* measurement ticks, a clinical touch */}
       <div className="pointer-events-none absolute right-4 top-6 bottom-6 flex flex-col justify-between">
         {Array.from({ length: 6 }).map((_, i) => (
           <span key={i} className="h-px w-3 bg-spruce-800/20" />
